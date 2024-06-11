@@ -20,9 +20,13 @@ export const ticketsReducer = (state = initState, action) => {
         searchId: action.searchId,
       }
     case TICKETS_LOAD_DATA: {
+      const transformData = action.tickets.map((item) => ({
+        ...item,
+        id: Math.random().toString(16).slice(2),
+      }))
       return {
         ...state,
-        data: action.tickets,
+        data: [...state.data, ...transformData],
         stop: action.stop,
       }
     }

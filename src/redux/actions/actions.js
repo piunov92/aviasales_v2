@@ -1,3 +1,4 @@
+import axios from 'axios'
 import {
   CHEAP,
   FAST,
@@ -61,52 +62,45 @@ export const threeTransfers = (checked) => {
     checked,
   }
 }
-export const ticketsLoadId = () => {
-  return async (dispatch) => {
-    try {
-      const response = await fetch(
-        'https://aviasales-test-api.kata.academy/search',
-      )
-      if (response.status !== 200) {
-        throw new Error('Something went wrong, try reloading the page')
-      }
-      const { searchId } = await response.json()
+export const ticketsLoadId = () => (dispatch) => {
+  axios('https://aviasales-test-api.kata.academy/search')
+    .then((response) => {
       dispatch({
         type: TICKETS_LOAD_ID,
-        searchId,
+        searchId: response.data.searchId,
       })
-      dispatch(ticketsLoadData(searchId))
-    } catch (err) {
+      dispatch(ticketsLoadData(response.data.searchId))
+    })
+    .catch((err) => {
       dispatch(errorOn(err.message))
-    }
-  }
+    })
 }
-export const ticketsLoadData = (searchId) => {
-  return async (dispatch) => {
-    try {
-      dispatch(loaderON())
-      const response = await fetch(
-        `https://aviasales-test-api.kata.academy/tickets?searchId=${searchId}`,
-      )
-      if (response.status !== 200) {
-        throw new Error('Something went wrong, try reloading the page')
-      }
-      const { tickets, stop } = await response.json()
-      const transformData = tickets.map((item) => ({
-        ...item,
-        id: Math.random().toString(16).slice(2),
-      }))
-      dispatch({
-        type: TICKETS_LOAD_DATA,
-        tickets: transformData,
-        stop,
+export const ticketsLoadData = (searchId) => (dispatch) => {
+  const loadData = () => {
+    axios(
+      `https://aviasales-test-api.kata.academy/tickets?searchId=${searchId}`,
+    )
+      .then((response) => {
+        console.log(response)
+        dispatch({
+          type: TICKETS_LOAD_DATA,
+          tickets: response.data.tickets,
+          stop: response.data.stop,
+        })
+        if (!response.data.stop) {
+          loadData()
+        }
       })
-      dispatch(loaderOFF())
-    } catch (err) {
-      dispatch(errorOn(err.message))
-      dispatch(loaderOFF())
-    }
+      .catch((err) => {
+        if (err.response.status === 500) {
+          loadData()
+        }
+        if (err.response.status !== 200 && err.response.status !== 500) {
+          dispatch(errorOn(err.message))
+        }
+      })
   }
+  loadData()
 }
 export const loaderON = () => {
   return {

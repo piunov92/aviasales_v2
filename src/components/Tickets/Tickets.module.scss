@@ -24,4 +24,27 @@
       color: #dfe5ec;
     }
   }
+  &__button--off {
+    background: #bdbdbd;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 15px 0 15px 0;
+    margin-top: 20px;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+
+    //&:hover {
+    //  background: #bdbdbd;
+    //}
+    //&:active {
+    //  background: #42a5f5;
+    //  color: #dfe5ec;
+    //}
+  }
 }
