@@ -3,13 +3,11 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import Ticket from '../Ticket/Ticket'
 import style from './Tickets.module.scss'
-import { Spin } from '../Spinner/Spin'
-// import { loaderOFF, loaderON } from '../../redux/actions/actions.js'
+import { LoaderBar } from '../LoaderBar/LoaderBar.jsx'
 
 function Tickets() {
   const INIT_TICKET_COUNT = 5
   const [moreTickets, setMoreTickets] = useState(INIT_TICKET_COUNT)
-  // const dispatch = useDispatch()
   const data = useSelector((state) => state.ticketsReducer.data)
 
   const handleButton = () => {
@@ -18,17 +16,9 @@ function Tickets() {
     }
   }
 
-  // useEffect(() => {
-  //   if (data.length) {
-  //     dispatch(loaderOFF())
-  //   } else {
-  //     dispatch(loaderON())
-  //   }
-  // }, [data])
-
   return (
     <div className={style.tickets}>
-      <Spin />
+      <LoaderBar />
       {data
         .map((item) => (
           <Ticket

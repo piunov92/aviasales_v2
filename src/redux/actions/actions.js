@@ -77,6 +77,7 @@ export const ticketsLoadId = () => (dispatch) => {
 }
 export const ticketsLoadData = (searchId) => (dispatch) => {
   const loadData = () => {
+    dispatch(loaderON())
     axios(
       `https://aviasales-test-api.kata.academy/tickets?searchId=${searchId}`,
     )
@@ -89,6 +90,8 @@ export const ticketsLoadData = (searchId) => (dispatch) => {
         })
         if (!response.data.stop) {
           loadData()
+        } else {
+          dispatch(loaderOFF())
         }
       })
       .catch((err) => {
