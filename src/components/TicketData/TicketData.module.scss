@@ -1,0 +1,27 @@
+.ticket-data {
+  display: inline-flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  &__data {
+    display: flex;
+    flex-direction: column;
+
+    &--direction-info {
+      font-family: 'Open Sans';
+      font-style: normal;
+      font-size: 12px;
+      line-height: 18px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: #a0b0b9;
+    }
+
+    &--time-info {
+      font-family: 'Open Sans';
+      font-style: normal;
+      font-size: 14px;
+      line-height: 21px;
+      color: #4a4a4a;
+    }
+  }
+}

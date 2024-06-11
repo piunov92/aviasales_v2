@@ -1,0 +1,66 @@
+$mobile-L: 533px;
+
+.sort-group {
+  display: inline-flex;
+  overflow: hidden;
+  flex-wrap: wrap;
+
+  &__item {
+    display: inline-flex;
+    flex: 1 1 auto;
+
+    &:first-child label {
+      border-radius: 6px 0 0 6px;
+      @media screen and (max-width: $mobile-L) {
+        border-radius: 6px;
+      }
+    }
+
+    &:last-child label {
+      border-radius: 0 6px 6px 0;
+      border-right: 1px solid #dfe5ec;
+      @media screen and (max-width: $mobile-L) {
+        border-radius: 6px;
+      }
+    }
+    @media screen and (max-width: $mobile-L) {
+      padding: 1px;
+    }
+  }
+
+  input[type='radio'] {
+    display: none;
+
+    &:checked + label {
+      background: #42a5f5;
+      color: #fff;
+    }
+  }
+
+  label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 auto;
+    cursor: pointer;
+    padding: 15px;
+    border: 1px solid #dfe5ec;
+    user-select: none;
+    white-space: nowrap;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #4a4a4a;
+
+    @media screen and (min-width: $mobile-L) {
+      border-right: none;
+    }
+    @media screen and (max-width: $mobile-L) {
+      border-radius: 6px;
+    }
+  }
+}

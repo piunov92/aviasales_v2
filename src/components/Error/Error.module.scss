@@ -1,0 +1,30 @@
+.error {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  text-align: center;
+  background-color: rgba(239, 237, 237, 0.3);
+  backdrop-filter: blur(5px);
+}
+
+.error-message {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid red;
+  border-radius: 10px;
+  padding: 1rem;
+  background-color: rgba(255, 0, 0, 0.105);
+  img {
+    margin-right: 20px;
+  }
+}
