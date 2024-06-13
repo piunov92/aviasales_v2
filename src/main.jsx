@@ -8,6 +8,13 @@ import {
 import { Provider } from 'react-redux'
 import { thunk } from 'redux-thunk'
 import rootReducer from './redux/reducers/rootReducer'
+import { mwSortCheap, mwSortFast, mwSortOptimal } from './middleware/mwSort.js'
+import {
+  mwFiltersNoTransfer,
+  mwFiltersOneTransfer,
+  mwFiltersTHREETransfer,
+  mwFiltersTWOTransfer,
+} from './middleware/mwFilters.js'
 // import logger from './middleware/logger'
 import logger from 'redux-logger'
 import App from './app/App'
@@ -16,7 +23,17 @@ import './index.css'
 const store = createStore(
   rootReducer,
   compose(
-    applyMiddleware(thunk, logger),
+    applyMiddleware(
+      thunk,
+      logger,
+      mwFiltersNoTransfer,
+      mwFiltersOneTransfer,
+      mwFiltersTWOTransfer,
+      mwFiltersTHREETransfer,
+      mwSortCheap,
+      mwSortFast,
+      mwSortOptimal,
+    ),
     window.__REDUX_DEVTOOLS_EXTENSION__ &&
       window.__REDUX_DEVTOOLS_EXTENSION__(),
   ),

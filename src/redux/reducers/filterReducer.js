@@ -7,11 +7,12 @@ import {
 } from '../types/types'
 
 const initStateFilterReducer = {
-  all: false,
-  noTransfers: false,
-  oneTransfer: false,
-  twoTransfers: false,
-  threeTransfers: false,
+  filterName: '',
+  all: true,
+  noTransfers: true,
+  oneTransfer: true,
+  twoTransfers: true,
+  threeTransfers: true,
 }
 
 export const filterReducer = (state = initStateFilterReducer, action) => {
@@ -24,11 +25,13 @@ export const filterReducer = (state = initStateFilterReducer, action) => {
     case NO_TRANSFERS:
       return {
         ...state,
+        filterName: 'no_transfers',
         noTransfers: action.checked,
       }
     case ONE_TRANSFERS:
       return {
         ...state,
+        filterName: 'one_transfers',
         oneTransfer: action.checked,
       }
     case TWO_TRANSFERS:

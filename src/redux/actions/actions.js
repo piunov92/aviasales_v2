@@ -82,7 +82,6 @@ export const ticketsLoadData = (searchId) => (dispatch) => {
       `https://aviasales-test-api.kata.academy/tickets?searchId=${searchId}`,
     )
       .then((response) => {
-        console.log(response)
         dispatch({
           type: TICKETS_LOAD_DATA,
           tickets: response.data.tickets,

@@ -70,6 +70,7 @@ function Filters() {
           id='checkbox-1'
           onChange={() => handleAll(!checked.all)}
           checked={checked.all}
+          // defaultChecked={true}
         />
         <label htmlFor='checkbox-1'>
           <span>Все</span>

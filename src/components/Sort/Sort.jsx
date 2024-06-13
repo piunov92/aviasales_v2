@@ -4,12 +4,6 @@ import { cheap, fast, optimal } from '../../redux/actions/actions'
 import style from './Sort.module.scss'
 
 function Sort() {
-  // const sort = useSelector((state) => {
-  //   console.log('Sort state > ', state)
-  //   const { sortReducer } = state
-  //   return sortReducer.sortName
-  // })
-
   const dispatch = useDispatch()
 
   const handleCheap = () => {
@@ -40,6 +34,7 @@ function Sort() {
           type='radio'
           name='radio'
           value='2'
+          // defaultChecked={true}
           onChange={handleFast}
         />
         <label htmlFor='radio-2'>Самый быстрый</label>
