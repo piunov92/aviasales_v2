@@ -1,9 +1,10 @@
 // import React from 'react'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import { LoaderBar } from '../LoaderBar/LoaderBar.jsx'
 import Ticket from '../Ticket/Ticket'
 import style from './Tickets.module.scss'
-import { LoaderBar } from '../LoaderBar/LoaderBar.jsx'
+import warning from './warning.svg'
 
 function Tickets() {
   const INIT_TICKET_COUNT = 5
@@ -34,7 +35,7 @@ function Tickets() {
   return (
     <div className={style.tickets}>
       <LoaderBar />
-      {isFilters &&
+      {isFilters ? (
         data
           .map((item) => (
             <Ticket
@@ -45,7 +46,13 @@ function Tickets() {
               back={item.segments[1]}
             />
           ))
-          .slice(0, moreTickets)}
+          .slice(0, moreTickets)
+      ) : (
+        <div className={style.warning}>
+          <img src={warning} alt='warning icon' />
+          Нет результатов, удовлетворяющих указанным критериям.
+        </div>
+      )}
       <button
         className={
           moreTickets < data.length

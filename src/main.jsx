@@ -16,7 +16,7 @@ import {
   mwFiltersTWOTransfer,
 } from './middleware/mwFilters.js'
 // import logger from './middleware/logger'
-import logger from 'redux-logger'
+// import logger from 'redux-logger'
 import App from './app/App'
 import './index.css'
 
@@ -25,7 +25,7 @@ const store = createStore(
   compose(
     applyMiddleware(
       thunk,
-      logger,
+      // logger,
       mwFiltersNoTransfer,
       mwFiltersOneTransfer,
       mwFiltersTWOTransfer,
