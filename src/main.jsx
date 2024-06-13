@@ -2,7 +2,7 @@
 import ReactDOM from 'react-dom/client'
 import {
   legacy_createStore as createStore,
-  compose,
+  // compose,
   applyMiddleware,
 } from 'redux'
 import { Provider } from 'react-redux'
@@ -22,21 +22,21 @@ import './index.css'
 
 const store = createStore(
   rootReducer,
-  compose(
-    applyMiddleware(
-      thunk,
-      // logger,
-      mwFiltersNoTransfer,
-      mwFiltersOneTransfer,
-      mwFiltersTWOTransfer,
-      mwFiltersTHREETransfer,
-      mwSortCheap,
-      mwSortFast,
-      mwSortOptimal,
-    ),
-    // window.__REDUX_DEVTOOLS_EXTENSION__ &&
-    //   window.__REDUX_DEVTOOLS_EXTENSION__(),
+  // compose(
+  applyMiddleware(
+    thunk,
+    // logger,
+    mwFiltersNoTransfer,
+    mwFiltersOneTransfer,
+    mwFiltersTWOTransfer,
+    mwFiltersTHREETransfer,
+    mwSortCheap,
+    mwSortFast,
+    mwSortOptimal,
   ),
+  // window.__REDUX_DEVTOOLS_EXTENSION__ &&
+  //   window.__REDUX_DEVTOOLS_EXTENSION__(),
+  // ),
 )
 
 ReactDOM.createRoot(document.getElementById('root')).render(
